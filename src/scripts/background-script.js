@@ -1,5 +1,10 @@
 console.log("ChessSight Background Script - Safari Compatible Mode");
 
+// Enable opening side panel when clicking the extension icon
+chrome.sidePanel
+  .setPanelBehavior({ openPanelOnActionClick: true })
+  .catch((error) => console.error(error));
+
 // Minimal message routing for popup <-> content script communication
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log('[Background] Message received:', message);
