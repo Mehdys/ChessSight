@@ -44,9 +44,14 @@
     <!-- Chat Interface -->
     <div id="chat-container">
         <div id="top-moves">
+            <div id="voice-controls" style="display: flex; gap: 5px;">
+                <button id="tts-toggle" class="btn-flat tooltipped" data-tooltip="Mute AI Voice">
+                    <i class="material-icons">volume_up</i>
+                </button>
+            </div>
+            <div style="flex-grow: 1;"></div>
             <div id="moves-label" style="font-size: 10px; color: #888; margin-top: 5px;">TOP MOVES:</div>
             <div id="moves-chips-container" style="display: flex; gap: 5px;"></div>
-            <div style="flex-grow: 1;"></div>
             <button id="clear-chat" class="btn-flat" style="padding: 0 5px; color: #888;"><i class="material-icons"
                     style="font-size: 18px;">delete_sweep</i></button>
         </div>
@@ -54,7 +59,10 @@
             <div class="chat-message assistant">Hi! I'm your AI Coach. Ask me anything!</div>
         </div>
         <div id="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask about this position...">
+            <button id="mic-btn" class="waves-effect waves-light btn-flat tooltipped" data-tooltip="Speak">
+                <i class="material-icons">mic</i>
+            </button>
+            <input type="text" id="chat-input" placeholder="Ask or speak..." style="margin-left: 5px;">
             <button id="send-btn" class="waves-effect waves-light btn-flat"><i class="material-icons">send</i></button>
         </div>
     </div>
