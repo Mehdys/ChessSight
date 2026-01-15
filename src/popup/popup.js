@@ -1,7 +1,9 @@
 import { Chess } from '../../lib/chess.js';
+import { VoiceCoach } from './voice.js';
 
 let engine;
 let board;
+let voiceCoach;
 let fen_cache;
 let config;
 
@@ -164,6 +166,28 @@ document.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('send-btn').addEventListener('click', sendMessageToLLM);
     document.getElementById('chat-input').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessageToLLM();
+    });
+
+    // Voice Coach Init
+    voiceCoach = new VoiceCoach();
+    voiceCoach.setTranscriptCallback((text) => {
+        const input = document.getElementById('chat-input');
+        input.value = text;
+        sendMessageToLLM();
+    });
+
+    document.getElementById('mic-btn').addEventListener('click', () => {
+        voiceCoach.toggleListen();
+    });
+
+    document.getElementById('tts-toggle').addEventListener('click', function () {
+        const icon = this.querySelector('i');
+        if (icon.textContent === 'volume_up') {
+            icon.textContent = 'volume_off';
+            window.speechSynthesis.cancel();
+        } else {
+            icon.textContent = 'volume_up';
+        }
     });
 
     document.getElementById('clear-chat').addEventListener('click', () => {
@@ -808,6 +832,7 @@ async function sendMessageToLLM() {
                 updateMessage(loadingId, renderMarkdown(fullReply));
             } else if (msg.type === 'done') {
                 port.disconnect();
+                if (voiceCoach) voiceCoach.speak(fullReply);
             } else if (msg.type === 'error') {
                 updateMessage(loadingId, `Error: ${msg.error}`);
                 port.disconnect();
@@ -832,7 +857,13 @@ async function sendMessageToLLM() {
 
     } catch (e) {
         console.error(e);
-        updateMessage(loadingId, `System Error: ${e.message}`);
+        const errorMessage = `System Error: ${e.message}`;
+        updateMessage(loadingId, errorMessage);
+
+        // Voice Output for system error
+        if (voiceCoach) {
+            voiceCoach.speak(errorMessage);
+        }
     }
 }
 
