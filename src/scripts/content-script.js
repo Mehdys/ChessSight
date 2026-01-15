@@ -14,7 +14,7 @@ if (window.top === window.self) {
 
 
         window.onload = () => {
-            console.log('[Mephisto] Content script loaded!');
+            console.log('[ChessSight] Content script loaded!');
             const normalizedHost = window.location.hostname.replace('www.', '');
             if (normalizedHost.includes('lichess')) {
                 site = 'lichess';
@@ -23,7 +23,7 @@ if (window.top === window.self) {
             } else if (normalizedHost.includes('blitztactics')) {
                 site = 'blitztactics';
             }
-            console.log(`[Mephisto] Site detected: ${site} (Hostname: ${window.location.hostname})`);
+            console.log(`[ChessSight] Site detected: ${site} (Hostname: ${window.location.hostname})`);
 
             pullConfig();
             determineStartPosition();
@@ -46,7 +46,7 @@ if (window.top === window.self) {
                     simulateMove(response.move).finally(toggleMoving);
                 }
             } else if (response.pushConfig) {
-                console.log('[Mephisto] Config pushed:', response.config);
+                console.log('[ChessSight] Config pushed:', response.config);
                 config = response.config;
             } else if (response.consoleMessage) {
                 console.log(response.consoleMessage);
@@ -58,7 +58,7 @@ if (window.top === window.self) {
                 const result = scrapePosition();
                 return result;
             } catch (e) {
-                console.error('[Mephisto] scrapePosition failed:', e);
+                console.error('[ChessSight] scrapePosition failed:', e);
                 return 'no'; // skip the current attempt, if we can't scrape
             }
         }
@@ -74,7 +74,7 @@ if (window.top === window.self) {
             } else if (site === 'blitztactics') {
                 prefix += '***bt'
             }
-            console.log(`[Mephisto] Scrape starting for site: ${site}`);
+            console.log(`[ChessSight] Scrape starting for site: ${site}`);
             let res;
             if (config.variant === 'chess') {
                 const moveContainer = getMoveContainer();
@@ -107,12 +107,12 @@ if (window.top === window.self) {
             let res = '';
             const selectedMove = getSelectedMoveRecord();
             if (!config.simon_says_mode && !selectedMove) {
-                console.info('[Mephisto] Full game scan active (no single move selected).');
+                console.info('[ChessSight] Full game scan active (no single move selected).');
                 // Don't return empty, proceed to scrape all
             }
             if (site === 'chesscom') {
                 const moveRecords = getMoveRecords();
-                console.log(`[Mephisto] Found ${moveRecords.length} move records.`);
+                console.log(`[ChessSight] Found ${moveRecords.length} move records.`);
                 for (const moveWrapper of moveRecords) {
                     const move = moveWrapper.lastElementChild
                     if (move.lastElementChild?.classList.contains('icon-font-chess')) {
@@ -199,7 +199,7 @@ if (window.top === window.self) {
             chrome.runtime.sendMessage({ pullConfig: true }, (response) => {
                 if (response && response.config) {
                     config = response.config;
-                    console.log('[Mephisto] Config pulled:', config);
+                    console.log('[ChessSight] Config pulled:', config);
                 }
             });
         }
@@ -218,7 +218,7 @@ if (window.top === window.self) {
                 selectedMove = document.querySelector('kwdb.a1t')
                     || document.querySelector('move.active');
             }
-            // console.log('[Mephisto] getSelectedMoveRecord found:', selectedMove);
+            // console.log('[ChessSight] getSelectedMoveRecord found:', selectedMove);
             return selectedMove;
         }
 
@@ -238,7 +238,7 @@ if (window.top === window.self) {
                     moves = document.querySelectorAll('move'); // vs training
                 }
             }
-            // console.log(`[Mephisto] getMoveRecords found ${moves ? moves.length : 0} moves`);
+            // console.log(`[ChessSight] getMoveRecords found ${moves ? moves.length : 0} moves`);
             return moves;
         }
 
@@ -252,7 +252,7 @@ if (window.top === window.self) {
                     moveContainer = document.querySelector('.tview2'); // vs training
                 }
             }
-            // console.log('[Mephisto] getMoveContainer found:', moveContainer);
+            // console.log('[ChessSight] getMoveContainer found:', moveContainer);
             return moveContainer;
         }
 
@@ -442,14 +442,14 @@ if (window.top === window.self) {
 
                 if (board && pieces?.length) {
                     clearInterval(intervalId);
-                    console.log('[Mephisto] Board found! Starting observer.');
+                    console.log('[ChessSight] Board found! Starting observer.');
 
                     onPositionLoad();
                     startObservation(); // Switch to Observer
                 }
 
                 if (++retryCount >= 50) { // 5 seconds timeout
-                    console.warn('[Mephisto] Board search timed out (5s), check selectors?');
+                    console.warn('[ChessSight] Board search timed out (5s), check selectors?');
                     // Don't clear interval, keep trying but warn
                 }
             }, 100);
@@ -471,7 +471,7 @@ if (window.top === window.self) {
             }
 
             if (!targetNode) {
-                console.warn('[Mephisto] Precise target not found. Fallback to limited body observer.');
+                console.warn('[ChessSight] Precise target not found. Fallback to limited body observer.');
                 targetNode = document.body;
             }
 
@@ -483,11 +483,11 @@ if (window.top === window.self) {
                 if (now - lastScrapeTime < SCRAPE_THROTTLE) return;
 
                 // Ignore mutations from our own sidebar UI to prevent infinite loops
-                const isMephistoMutation = mutationList.some(mutation => {
+                const isChessSightMutation = mutationList.some(mutation => {
                     const target = mutation.target.nodeType === Node.TEXT_NODE ? mutation.target.parentElement : mutation.target;
                     return target?.closest?.('#mephisto-sidebar-container');
                 });
-                if (isMephistoMutation) return;
+                if (isChessSightMutation) return;
 
                 isScanning = true;
                 lastScrapeTime = now;
@@ -502,7 +502,7 @@ if (window.top === window.self) {
             const observer = new MutationObserver(callback);
             // Be very specific about what we observe if we're on the body
             observer.observe(targetNode, targetNode === document.body ? { childList: true, subtree: false } : config);
-            console.log('[Mephisto] Monitoring game for position changes');
+            console.log('[ChessSight] Monitoring game for position changes');
         }
 
 

@@ -30,8 +30,8 @@
 
 2. **Build in Xcode:**
    ```bash
-   xcodebuild -project "Safari/Mephisto Chess Extension/Mephisto Chess Extension.xcodeproj" \
-     -scheme "Mephisto Chess Extension (macOS)" \
+   xcodebuild -project "Safari/ChessSight Chess Extension/ChessSight Chess Extension.xcodeproj" \
+     -scheme "ChessSight Chess Extension (macOS)" \
      -configuration Debug build
    ```
    
@@ -69,8 +69,8 @@
 3. Test in Safari:
    ```bash
    ./build-safari.sh && \
-   xcodebuild -project "Safari/Mephisto Chess Extension/Mephisto Chess Extension.xcodeproj" \
-     -scheme "Mephisto Chess Extension (macOS)" build && \
+   xcodebuild -project "Safari/ChessSight Chess Extension/ChessSight Chess Extension.xcodeproj" \
+     -scheme "ChessSight Chess Extension (macOS)" build && \
    ./restore-chrome-manifest.sh
    ```
 

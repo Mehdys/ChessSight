@@ -1,4 +1,4 @@
-console.log("Mephisto Background Script - Safari Compatible Mode");
+console.log("ChessSight Background Script - Safari Compatible Mode");
 
 // Minimal message routing for popup <-> content script communication
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

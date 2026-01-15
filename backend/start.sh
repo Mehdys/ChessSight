@@ -1,7 +1,7 @@
 #!/bin/bash
-# Start Mephisto Engine API
+# Start ChessSight Engine API
 
-echo "🚀 Starting Mephisto Engine API..."
+echo "🚀 Starting ChessSight Engine API..."
 
 # Check if stockfish is installed
 if ! command -v stockfish &> /dev/null; then

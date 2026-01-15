@@ -832,7 +832,7 @@ async function sendMessageToLLM() {
         });
     }
 
-    const systemPrompt = `You are Mephisto, a Grandmaster Chess Coach. 
+    const systemPrompt = `You are ChessSight, a Grandmaster Chess Coach. 
     Current FEN: ${fen}
     ${analysisContext}
     Provide insightful, concise advice. Use Markdown for bolding key moves or concepts.`;

@@ -13,8 +13,8 @@
 		988634FA2F14543B009C6A8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988634F82F14543B009C6A8E /* Main.storyboard */; };
 		988635032F14543B009C6A8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988635022F14543B009C6A8E /* AppDelegate.swift */; };
 		988635062F14543B009C6A8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988635042F14543B009C6A8E /* Main.storyboard */; };
-		9886350D2F14543B009C6A8E /* Mephisto Chess Extension Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9886350C2F14543B009C6A8E /* Mephisto Chess Extension Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		988635172F14543B009C6A8E /* Mephisto Chess Extension Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 988635162F14543B009C6A8E /* Mephisto Chess Extension Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9886350D2F14543B009C6A8E /* ChessSight Chess Extension Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9886350C2F14543B009C6A8E /* ChessSight Chess Extension Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		988635172F14543B009C6A8E /* ChessSight Chess Extension Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 988635162F14543B009C6A8E /* ChessSight Chess Extension Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9886351C2F14543B009C6A8E /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 988634E12F14543A009C6A8E /* Main.html */; };
 		9886351D2F14543B009C6A8E /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 988634E12F14543A009C6A8E /* Main.html */; };
 		9886351E2F14543B009C6A8E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 988634E32F14543A009C6A8E /* Icon.png */; };
@@ -55,14 +55,14 @@
 			containerPortal = 988634DB2F14543A009C6A8E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9886350B2F14543B009C6A8E;
-			remoteInfo = "Mephisto Chess Extension Extension (iOS)";
+			remoteInfo = "ChessSight Chess Extension Extension (iOS)";
 		};
 		988635182F14543B009C6A8E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 988634DB2F14543A009C6A8E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 988635152F14543B009C6A8E;
-			remoteInfo = "Mephisto Chess Extension Extension (macOS)";
+			remoteInfo = "ChessSight Chess Extension Extension (macOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -73,7 +73,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9886350D2F14543B009C6A8E /* Mephisto Chess Extension Extension.appex in Embed Foundation Extensions */,
+				9886350D2F14543B009C6A8E /* ChessSight Chess Extension Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,7 +84,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				988635172F14543B009C6A8E /* Mephisto Chess Extension Extension.appex in Embed Foundation Extensions */,
+				988635172F14543B009C6A8E /* ChessSight Chess Extension Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,19 +99,19 @@
 		988634E62F14543A009C6A8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		988634E72F14543B009C6A8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		988634E92F14543B009C6A8E /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
-		988634EE2F14543B009C6A8E /* Mephisto Chess Extension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mephisto Chess Extension.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		988634EE2F14543B009C6A8E /* ChessSight Chess Extension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChessSight Chess Extension.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		988634F12F14543B009C6A8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		988634F32F14543B009C6A8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		988634F62F14543B009C6A8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		988634F92F14543B009C6A8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		988634FB2F14543B009C6A8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		988635002F14543B009C6A8E /* Mephisto Chess Extension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mephisto Chess Extension.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		988635002F14543B009C6A8E /* ChessSight Chess Extension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChessSight Chess Extension.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		988635022F14543B009C6A8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		988635052F14543B009C6A8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		988635072F14543B009C6A8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9886350C2F14543B009C6A8E /* Mephisto Chess Extension Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Mephisto Chess Extension Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9886350C2F14543B009C6A8E /* ChessSight Chess Extension Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ChessSight Chess Extension Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		988635112F14543B009C6A8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		988635162F14543B009C6A8E /* Mephisto Chess Extension Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Mephisto Chess Extension Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		988635162F14543B009C6A8E /* ChessSight Chess Extension Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ChessSight Chess Extension Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9886351B2F14543B009C6A8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9886353B2F14543B009C6A8E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../../../res; sourceTree = "<group>"; };
 		9886353C2F14543B009C6A8E /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../../../LICENSE; sourceTree = "<group>"; };
@@ -202,10 +202,10 @@
 		988634EF2F14543B009C6A8E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				988634EE2F14543B009C6A8E /* Mephisto Chess Extension.app */,
-				988635002F14543B009C6A8E /* Mephisto Chess Extension.app */,
-				9886350C2F14543B009C6A8E /* Mephisto Chess Extension Extension.appex */,
-				988635162F14543B009C6A8E /* Mephisto Chess Extension Extension.appex */,
+				988634EE2F14543B009C6A8E /* ChessSight Chess Extension.app */,
+				988635002F14543B009C6A8E /* ChessSight Chess Extension.app */,
+				9886350C2F14543B009C6A8E /* ChessSight Chess Extension Extension.appex */,
+				988635162F14543B009C6A8E /* ChessSight Chess Extension Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -268,9 +268,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		988634ED2F14543B009C6A8E /* Mephisto Chess Extension (iOS) */ = {
+		988634ED2F14543B009C6A8E /* ChessSight Chess Extension (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 988635302F14543B009C6A8E /* Build configuration list for PBXNativeTarget "Mephisto Chess Extension (iOS)" */;
+			buildConfigurationList = 988635302F14543B009C6A8E /* Build configuration list for PBXNativeTarget "ChessSight Chess Extension (iOS)" */;
 			buildPhases = (
 				988634EA2F14543B009C6A8E /* Sources */,
 				988634EB2F14543B009C6A8E /* Frameworks */,
@@ -282,16 +282,16 @@
 			dependencies = (
 				9886350F2F14543B009C6A8E /* PBXTargetDependency */,
 			);
-			name = "Mephisto Chess Extension (iOS)";
+			name = "ChessSight Chess Extension (iOS)";
 			packageProductDependencies = (
 			);
-			productName = "Mephisto Chess Extension (iOS)";
-			productReference = 988634EE2F14543B009C6A8E /* Mephisto Chess Extension.app */;
+			productName = "ChessSight Chess Extension (iOS)";
+			productReference = 988634EE2F14543B009C6A8E /* ChessSight Chess Extension.app */;
 			productType = "com.apple.product-type.application";
 		};
-		988634FF2F14543B009C6A8E /* Mephisto Chess Extension (macOS) */ = {
+		988634FF2F14543B009C6A8E /* ChessSight Chess Extension (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 988635372F14543B009C6A8E /* Build configuration list for PBXNativeTarget "Mephisto Chess Extension (macOS)" */;
+			buildConfigurationList = 988635372F14543B009C6A8E /* Build configuration list for PBXNativeTarget "ChessSight Chess Extension (macOS)" */;
 			buildPhases = (
 				988634FC2F14543B009C6A8E /* Sources */,
 				988634FD2F14543B009C6A8E /* Frameworks */,
@@ -303,16 +303,16 @@
 			dependencies = (
 				988635192F14543B009C6A8E /* PBXTargetDependency */,
 			);
-			name = "Mephisto Chess Extension (macOS)";
+			name = "ChessSight Chess Extension (macOS)";
 			packageProductDependencies = (
 			);
-			productName = "Mephisto Chess Extension (macOS)";
-			productReference = 988635002F14543B009C6A8E /* Mephisto Chess Extension.app */;
+			productName = "ChessSight Chess Extension (macOS)";
+			productReference = 988635002F14543B009C6A8E /* ChessSight Chess Extension.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9886350B2F14543B009C6A8E /* Mephisto Chess Extension Extension (iOS) */ = {
+		9886350B2F14543B009C6A8E /* ChessSight Chess Extension Extension (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9886352C2F14543B009C6A8E /* Build configuration list for PBXNativeTarget "Mephisto Chess Extension Extension (iOS)" */;
+			buildConfigurationList = 9886352C2F14543B009C6A8E /* Build configuration list for PBXNativeTarget "ChessSight Chess Extension Extension (iOS)" */;
 			buildPhases = (
 				988635082F14543B009C6A8E /* Sources */,
 				988635092F14543B009C6A8E /* Frameworks */,
@@ -322,16 +322,16 @@
 			);
 			dependencies = (
 			);
-			name = "Mephisto Chess Extension Extension (iOS)";
+			name = "ChessSight Chess Extension Extension (iOS)";
 			packageProductDependencies = (
 			);
-			productName = "Mephisto Chess Extension Extension (iOS)";
-			productReference = 9886350C2F14543B009C6A8E /* Mephisto Chess Extension Extension.appex */;
+			productName = "ChessSight Chess Extension Extension (iOS)";
+			productReference = 9886350C2F14543B009C6A8E /* ChessSight Chess Extension Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		988635152F14543B009C6A8E /* Mephisto Chess Extension Extension (macOS) */ = {
+		988635152F14543B009C6A8E /* ChessSight Chess Extension Extension (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 988635332F14543B009C6A8E /* Build configuration list for PBXNativeTarget "Mephisto Chess Extension Extension (macOS)" */;
+			buildConfigurationList = 988635332F14543B009C6A8E /* Build configuration list for PBXNativeTarget "ChessSight Chess Extension Extension (macOS)" */;
 			buildPhases = (
 				988635122F14543B009C6A8E /* Sources */,
 				988635132F14543B009C6A8E /* Frameworks */,
@@ -341,11 +341,11 @@
 			);
 			dependencies = (
 			);
-			name = "Mephisto Chess Extension Extension (macOS)";
+			name = "ChessSight Chess Extension Extension (macOS)";
 			packageProductDependencies = (
 			);
-			productName = "Mephisto Chess Extension Extension (macOS)";
-			productReference = 988635162F14543B009C6A8E /* Mephisto Chess Extension Extension.appex */;
+			productName = "ChessSight Chess Extension Extension (macOS)";
+			productReference = 988635162F14543B009C6A8E /* ChessSight Chess Extension Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -372,7 +372,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 988634DE2F14543A009C6A8E /* Build configuration list for PBXProject "Mephisto Chess Extension" */;
+			buildConfigurationList = 988634DE2F14543A009C6A8E /* Build configuration list for PBXProject "ChessSight Chess Extension" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -386,10 +386,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				988634ED2F14543B009C6A8E /* Mephisto Chess Extension (iOS) */,
-				988634FF2F14543B009C6A8E /* Mephisto Chess Extension (macOS) */,
-				9886350B2F14543B009C6A8E /* Mephisto Chess Extension Extension (iOS) */,
-				988635152F14543B009C6A8E /* Mephisto Chess Extension Extension (macOS) */,
+				988634ED2F14543B009C6A8E /* ChessSight Chess Extension (iOS) */,
+				988634FF2F14543B009C6A8E /* ChessSight Chess Extension (macOS) */,
+				9886350B2F14543B009C6A8E /* ChessSight Chess Extension Extension (iOS) */,
+				988635152F14543B009C6A8E /* ChessSight Chess Extension Extension (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -497,12 +497,12 @@
 /* Begin PBXTargetDependency section */
 		9886350F2F14543B009C6A8E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9886350B2F14543B009C6A8E /* Mephisto Chess Extension Extension (iOS) */;
+			target = 9886350B2F14543B009C6A8E /* ChessSight Chess Extension Extension (iOS) */;
 			targetProxy = 9886350E2F14543B009C6A8E /* PBXContainerItemProxy */;
 		};
 		988635192F14543B009C6A8E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 988635152F14543B009C6A8E /* Mephisto Chess Extension Extension (macOS) */;
+			target = 988635152F14543B009C6A8E /* ChessSight Chess Extension Extension (macOS) */;
 			targetProxy = 988635182F14543B009C6A8E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -664,7 +664,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Mephisto Chess Extension Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "ChessSight Chess Extension Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -677,8 +677,8 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.Mephisto-Chess-Extension.Extension";
-				PRODUCT_NAME = "Mephisto Chess Extension Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.ChessSight-Chess-Extension.Extension";
+				PRODUCT_NAME = "ChessSight Chess Extension Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -697,7 +697,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Mephisto Chess Extension Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "ChessSight Chess Extension Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -710,8 +710,8 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.Mephisto-Chess-Extension.Extension";
-				PRODUCT_NAME = "Mephisto Chess Extension Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.ChessSight-Chess-Extension.Extension";
+				PRODUCT_NAME = "ChessSight Chess Extension Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -733,7 +733,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS (App)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Mephisto Chess Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "ChessSight Chess Extension";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -751,8 +751,8 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.Mephisto-Chess-Extension";
-				PRODUCT_NAME = "Mephisto Chess Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.ChessSight-Chess-Extension";
+				PRODUCT_NAME = "ChessSight Chess Extension";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -773,7 +773,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS (App)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Mephisto Chess Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "ChessSight Chess Extension";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -791,8 +791,8 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.Mephisto-Chess-Extension";
-				PRODUCT_NAME = "Mephisto Chess Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.ChessSight-Chess-Extension";
+				PRODUCT_NAME = "ChessSight Chess Extension";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -815,7 +815,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Mephisto Chess Extension Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "ChessSight Chess Extension Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -828,8 +828,8 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.Mephisto-Chess-Extension.Extension";
-				PRODUCT_NAME = "Mephisto Chess Extension Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.ChessSight-Chess-Extension.Extension";
+				PRODUCT_NAME = "ChessSight Chess Extension Extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -850,7 +850,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Mephisto Chess Extension Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "ChessSight Chess Extension Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -863,8 +863,8 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.Mephisto-Chess-Extension.Extension";
-				PRODUCT_NAME = "Mephisto Chess Extension Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.ChessSight-Chess-Extension.Extension";
+				PRODUCT_NAME = "ChessSight Chess Extension Extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -888,7 +888,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS (App)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Mephisto Chess Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "ChessSight Chess Extension";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -903,8 +903,8 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.Mephisto-Chess-Extension";
-				PRODUCT_NAME = "Mephisto Chess Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.ChessSight-Chess-Extension";
+				PRODUCT_NAME = "ChessSight Chess Extension";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = macosx;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -929,7 +929,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS (App)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Mephisto Chess Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "ChessSight Chess Extension";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -944,8 +944,8 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.Mephisto-Chess-Extension";
-				PRODUCT_NAME = "Mephisto Chess Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.ChessSight-Chess-Extension";
+				PRODUCT_NAME = "ChessSight Chess Extension";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = macosx;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -960,7 +960,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		988634DE2F14543A009C6A8E /* Build configuration list for PBXProject "Mephisto Chess Extension" */ = {
+		988634DE2F14543A009C6A8E /* Build configuration list for PBXProject "ChessSight Chess Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9886352A2F14543B009C6A8E /* Debug */,
@@ -969,7 +969,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9886352C2F14543B009C6A8E /* Build configuration list for PBXNativeTarget "Mephisto Chess Extension Extension (iOS)" */ = {
+		9886352C2F14543B009C6A8E /* Build configuration list for PBXNativeTarget "ChessSight Chess Extension Extension (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9886352D2F14543B009C6A8E /* Debug */,
@@ -978,7 +978,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		988635302F14543B009C6A8E /* Build configuration list for PBXNativeTarget "Mephisto Chess Extension (iOS)" */ = {
+		988635302F14543B009C6A8E /* Build configuration list for PBXNativeTarget "ChessSight Chess Extension (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				988635312F14543B009C6A8E /* Debug */,
@@ -987,7 +987,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		988635332F14543B009C6A8E /* Build configuration list for PBXNativeTarget "Mephisto Chess Extension Extension (macOS)" */ = {
+		988635332F14543B009C6A8E /* Build configuration list for PBXNativeTarget "ChessSight Chess Extension Extension (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				988635342F14543B009C6A8E /* Debug */,
@@ -996,7 +996,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		988635372F14543B009C6A8E /* Build configuration list for PBXNativeTarget "Mephisto Chess Extension (macOS)" */ = {
+		988635372F14543B009C6A8E /* Build configuration list for PBXNativeTarget "ChessSight Chess Extension (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				988635382F14543B009C6A8E /* Debug */,

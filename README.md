@@ -1,213 +1,113 @@
 ![ChessSight Banner](./res/chesssight_banner.png)
 
 <p align="center">
-  <strong>AI-Powered Chess Analysis Extension</strong>
+  <strong>Next-Generation AI Chess Analysis</strong><br>
+  <em>Professional Analysis for Chrome & Safari</em>
 </p>
 
 <p align="center">
-  <a href="https://github.com/AlexPetrusca/ChessSight/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://github.com/AlexPetrusca/ChessSight/releases"><img src="https://img.shields.io/badge/version-2.0.0-brightgreen.svg" alt="Version"></a>
-  <img src="https://img.shields.io/badge/chrome-supported-success.svg" alt="Chrome">
-  <img src="https://img.shields.io/badge/safari-supported-success.svg" alt="Safari">
+  <img src="https://img.shields.io/badge/version-2.1.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/chrome-ready-success.svg" alt="Chrome">
+  <img src="https://img.shields.io/badge/safari-ready-success.svg" alt="Safari">
+  <img src="https://img.shields.io/badge/license-MIT-gray.svg" alt="License">
 </p>
 
 ---
 
-## ✨ Features
+## ⚡ Overview
 
-- **🎯 Real-time Analysis** - Get instant best move suggestions powered by Stockfish
-- **📊 Multiple Lines** - See top 3 move candidates with evaluations  
-- **🎨 Visual Arrows** - Clear move annotations directly on the board
-- **🤖 AI Chat Assistant** - Ask questions about positions using LLM integration (Ollama/OpenAI)
-- **⚡ Auto-play** - Optionally automate moves for puzzles and practice
-- **🌐 Multi-Site Support** - Works on Chess.com, Lichess.org, and BlitzTactics
-- **🎮 Game Variant Support** - Standard, Chess960, Crazyhouse, and more
-- **🔄 Remote or Local Engine** - Use built-in WASM engines or remote Stockfish API
-- **📱 Dual Platform** - Available for both Chrome and Safari
+**ChessSight** (formerly Mephisto) is a high-performance browser extension that brings engine-grade chess analysis to your favorite chess websites. 
+
+Unlike basic evaluation tools, ChessSight integrates **Stockfish 16+** directly into your browser via WebAssembly (WASM) for near-instant analysis without server latency, while also offering a local backend mode for leveraging your hardware's full power.
+
+### Key Capabilities
+- **🚀 Instant Analysis**: Real-time evaluation using optimized WASM Stockfish binaries.
+- **🌐 Universal Support**: Seamlessly works on Chess.com, Lichess, and BlitzTactics.
+- **🛡️ Privacy First**: Runs entirely locally in your browser. No game data is sent to external servers unless using the optional LLM chat.
+- **🤖 AI Assistant**: Integrated Chat interface connecting to LLMs (Ollama/OpenAI) to explain positions in plain English.
+- **🍏 Native Safari App**: Fully signed and native Safari Web Extension for macOS users.
 
 ---
 
-## 🚀 Quick Start
+## 🏗 System Architecture
 
-### Chrome Extension
+ChessSight operates on a modular architecture designed for performance and isolation.
 
-1. **Install from Chrome Web Store** (recommended)
-   - Coming soon to the Chrome Web Store!
+```mermaid
+graph TD
+    subgraph Browser Context
+        CS[Content Script] -->|Detects Board/Moves| BG[Background Service]
+        UI[Popup / Sidebar UI] -->|User Commands| BG
+        BG -->|Orchestrates| WE[WASM Engine Worker]
+        WE -->|Stockfish 16| BG
+    end
 
-2. **Or load unpacked** (development):
+    subgraph "Optional Local Backend"
+        BG -.->|WebSocket/HTTP| API[Python FastAPI Server]
+        API -->|Subprocess| SE[Stockfish System Binary]
+        API -.->|REST| O[Ollama / OpenAI API]
+    end
+
+    classDef browser fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef server fill:#f3e5f5,stroke:#4a148c,stroke-width:2px;
+    class BG,CS,UI,WE browser;
+    class API,SE,O server;
+```
+
+---
+
+## 🚀 Installation
+
+### 1. Chrome (Developer Mode)
+1. Clone the repository:
    ```bash
-   git clone https://github.com/AlexPetrusca/ChessSight.git
-   cd ChessSight
-   # Open chrome://extensions/
-   # Enable "Developer mode"
-   # Click "Load unpacked" and select this directory
+   git clone https://github.com/Mehdys/ChessSight.git
    ```
+2. Open `chrome://extensions/`
+3. Enable **Developer mode** (top right toggle).
+4. Click **Load unpacked** and select the `ChessSight` folder.
 
-### Safari Extension
-
-1. **Build in Xcode**:
+### 2. Safari (macOS)
+1. Build the native wrapper:
    ```bash
-   git clone https://github.com/AlexPetrusca/ChessSight.git
-   cd ChessSight
    ./build-safari.sh
-   xcodebuild -project "Safari/Mephisto Chess Extension/Mephisto Chess Extension.xcodeproj" \
-     -scheme "Mephisto Chess Extension (macOS)" build
+   open "Safari/ChessSight/ChessSight.xcodeproj"
    ```
+2. In Xcode, select the `ChessSight (macOS)` scheme and run (Cmd+R).
+3. Enable the extension in **Safari Settings > Extensions**.
 
-2. **Enable in Safari**:
-   - Run the built app once
-   - Safari → Settings → Extensions
-   - Enable "ChessSight"
-   - Grant permissions when prompted
+---
 
-### Backend API (Optional)
+## 🛠 Engineering & Development
 
-For remote engine analysis, run the backend server:
+The project is structured as a modern monorepo:
+
+| Directory | Purpose |
+|-----------|---------|
+| `src/` | Core extension logic (Content scripts, Background service, UI) |
+| `backend/` | Python FastAPI server for heavy-duty analysis & LLM bridging |
+| `lib/engine/` | Compiled WASM binaries (Stockfish, Fairy-Stockfish) |
+| `Safari/` | Native Swift wrapper for macOS integration |
+| `docs/` | Extended documentation (API, Architecture, Roadmap) |
+
+### Building from Source
+Ensure you have Node.js 18+ and Python 3.11+.
 
 ```bash
+# Install backend dependencies
 cd backend
-# Install dependencies
 pip install -r requirements.txt
 
-# Install Stockfish
-brew install stockfish  # macOS
-# or apt-get install stockfish  # Linux
-
-# Start server
+# Run backend server (Optional)
 ./start.sh
 ```
-
-Or use Docker:
-
-```bash
-cd backend
-docker-compose up -d
-```
-
----
-
-## 📖 Usage
-
-1. **Open ChessSight**: Click the extension icon or open the side panel (Chrome)
-2. **Navigate to a chess site**: Go to Chess.com, Lichess, or BlitzTactics
-3. **Start a game**: The extension automatically detects the board position
-4. **View analysis**: See best move suggestions with arrows and evaluation scores
-5. **Chat with AI** (optional): Ask questions about the position using the chat feature
-
-### Configuration
-
-Click the ⚙️ icon to customize:
-- Engine selection (Stockfish 16/17, Lc0, Fairy Stockfish)
-- Computation time
-- Number of analysis lines
-- Autoplay settings
-- LLM provider (Ollama or OpenAI)
-
----
-
-## 🏗️ Architecture
-
-**Extension Components**:
-- **Content Script** - Detects board positions on chess websites
-- **Popup/Sidebar** - Displays analysis UI and chess board
-- **Background Script** - Routes messages between components
-- **Chess Engines** - Stockfish WASM builds or remote API
-
-**Backend API**:
-- FastAPI server running Stockfish locally
-- Provides `/analyze` endpoint for position evaluation
-- Dockerized for easy deployment
-
-For detailed architecture, see [ARCHITECTURE.md](./ARCHITECTURE.md)
-
----
-
-## 🛠️ Development
-
-### Prerequisites
-- Node.js 18+ (for development tools)
-- Python 3.11+ (for backend)
-- Xcode (for Safari extension on macOS)
-
-### Local Development
-
-```bash
-# Clone repository
-git clone https://github.com/AlexPetrusca/ChessSight.git
-cd ChessSight
-
-# Chrome: Load unpacked extension
-# Safari: Build with build-safari.sh
-
-# Backend development
-cd backend
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-### Testing
-
-```bash
-# Test backend
-cd backend
-curl http://localhost:9090/
-curl -X POST http://localhost:9090/analyze \
-  -H "Content-Type: application/json" \
-  -d '{"fen":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"}'
-```
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
-
----
-
-## 📚 Documentation
-
-- [Build Instructions](./BUILD.md) - Dual-platform build guide
-- [Architecture](./ARCHITECTURE.md) - Technical overview
-- [API Documentation](./API.md) - Backend API reference
-- [Contributing](./CONTRIBUTING.md) - Contribution guidelines
-- [Roadmap](./ROADMAP.md) - Future plans
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
-
-**Ways to contribute**:
-- 🐛 Report bugs and issues
-- 💡 Suggest new features
-- 📝 Improve documentation  
-- 🔧 Submit pull requests
-
----
+We welcome engineering contributions. Please check `docs/CONTRIBUTING.md` for our code standards and pull request process.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **Stockfish** - Powerful open-source chess engine
-- **Leela Chess Zero** - Neural network chess engine
-- **Fairy-Stockfish** - Chess variant support
-- **chessboard.js** & **chess.js** - Chess UI libraries
-- Original **Mephisto** project contributors
-
----
-
-## 💬 Support
-
-- 🐛 Issues: [GitHub Issues](https://github.com/Mehdys/ChessSight/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/Mehdys/ChessSight/discussions)
-
----
-
-<p align="center">
-  Made with ♟️ by <a href="https://github.com/AlexPetrusca">Alex Petrusca</a>
-</p>
-
+MIT License. See [LICENSE](LICENSE) for details.

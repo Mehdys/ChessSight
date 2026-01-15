@@ -16,7 +16,7 @@ import SafariServices
 typealias PlatformViewController = NSViewController
 #endif
 
-let extensionBundleIdentifier = "com.github.Mephisto-Chess-Extension.Extension"
+let extensionBundleIdentifier = "com.github.ChessSight-Chess-Extension.Extension"
 
 class ViewController: PlatformViewController, WKNavigationDelegate, WKScriptMessageHandler {
 
