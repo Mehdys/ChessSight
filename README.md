@@ -58,14 +58,13 @@ graph TD
 
 ## 🚀 Installation
 
-### 1. Chrome (Developer Mode)
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Mehdys/ChessSight.git
-   ```
-2. Open `chrome://extensions/`
-3. Enable **Developer mode** (top right toggle).
-4. Click **Load unpacked** and select the `ChessSight` folder.
+### 1. Chrome (Easiest)
+1. Go to the [Releases Page](../../releases) (link will work once published).
+2. Download `ChessSight-v2.1.0.zip`.
+3. Unzip the file.
+4. Open `chrome://extensions/`
+5. Enable **Developer mode** (top right toggle).
+6. Click **Load unpacked** and select the unzipped `ChessSight` folder.
 
 ### 2. Safari (macOS)
 1. Build the native wrapper:
@@ -91,14 +90,19 @@ The project is structured as a modern monorepo:
 | `docs/` | Extended documentation (API, Architecture, Roadmap) |
 
 ### Building from Source
-Ensure you have Node.js 18+ and Python 3.11+.
+Ensure you have Node.js 18+.
 
+#### Standard (Light Version)
+No build steps required! just follow the installation instructions above.
+
+#### Advanced (Local Backend) - Optional
+If you want to run the heavy-duty Python analysis engine:
 ```bash
 # Install backend dependencies
 cd backend
 pip install -r requirements.txt
 
-# Run backend server (Optional)
+# Run backend server
 ./start.sh
 ```
 

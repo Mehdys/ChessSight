@@ -1,7 +1,7 @@
 if (window.top === window.self) {
     (function () {
         let site; // the site that the content-script was loaded on (lichess, chess.com, blitztactics.com)
-        let config = { variant: 'chess', engine: 'stockfish-16-nnue-7', simon_says_mode: false, autoplay: false, puzzle_mode: false }; // configuration pulled from popup, initialized with defaults
+        let config = { variant: 'chess', engine: 'stockfish-16-nnue-7', simon_says_mode: false, puzzle_mode: false }; // configuration pulled from popup, initialized with defaults
         let startPosCache; // cache of non-standard starting positions as puzzle strings (to support chess960)
         let moving = false; // whether the content-script is performing a move
 
@@ -36,15 +36,7 @@ if (window.top === window.self) {
                 const res = tryScrapePosition();
                 const orient = getOrientation();
                 chrome.runtime.sendMessage({ dom: res, orient: orient, fenresponse: true });
-            } else if (response.automove) {
-                toggleMoving();
-                if (config.puzzle_mode) {
-                    console.log(response.pv);
-                    simulatePvMoves(response.pv).finally(toggleMoving);
-                } else {
-                    console.log(response.move);
-                    simulateMove(response.move).finally(toggleMoving);
-                }
+
             } else if (response.pushConfig) {
                 console.log('[ChessSight] Config pushed:', response.config);
                 config = response.config;
@@ -520,144 +512,6 @@ if (window.top === window.self) {
             }
         }
 
-        // -------------------------------------------------------------------------------------------
 
-        function promiseTimeout(time) {
-            return new Promise((resolve) => {
-                setTimeout(() => resolve(time), time);
-            });
-        }
-
-        function getOffsetCorrectionXY() {
-            if (config.python_autoplay_backend) {
-                return getBrowserOffsetXY();
-            }
-            return [0, 0];
-        }
-
-        function getBrowserOffsetXY() {
-            const topBarHeight = window.outerHeight - window.innerHeight;
-            const offsetX = window.screenX;
-            const offsetY = window.screenY + topBarHeight;
-            return [offsetX, offsetY];
-        }
-
-        function getRandomSampledXY(bounds, range = 0.8) {
-            const margin = (1 - range) / 2;
-            const x = bounds.x + (range * Math.random() + margin) * bounds.width;
-            const y = bounds.y + (range * Math.random() + margin) * bounds.height;
-            const [correctX, correctY] = getOffsetCorrectionXY();
-            return [x + correctX, y + correctY];
-        }
-
-        // -------------------------------------------------------------------------------------------
-
-        function dispatchSimulateClick(x, y) {
-            console.log([x, y]);
-            chrome.runtime.sendMessage({
-                click: true,
-                x: x,
-                y: y
-            });
-        }
-
-        function simulateClickSquare(bounds, range = 0.8) {
-            const [x, y] = getRandomSampledXY(bounds, range);
-            dispatchSimulateClick(x, y);
-        }
-
-        function simulateMove(move) {
-            const boardBounds = getBoard().getBoundingClientRect();
-            const orientation = getOrientation();
-
-            function getBoundsFromCoords(coords) {
-                const squareSide = boardBounds.width / 8;
-                const [xIdx, yIdx] = (orientation === 'white')
-                    ? [coords[0].charCodeAt(0) - 'a'.charCodeAt(0), 8 - parseInt(coords[1])]
-                    : ['h'.charCodeAt(0) - coords[0].charCodeAt(0), parseInt(coords[1]) - 1];
-                return new DOMRect(boardBounds.x + xIdx * squareSide, boardBounds.y + yIdx * squareSide, squareSide, squareSide);
-            }
-
-            function getThinkTime() {
-                return config.think_time + Math.random() * config.think_variance;
-            }
-
-            function getMoveTime() {
-                return config.move_time + Math.random() * config.move_variance;
-            }
-
-            async function performSimulatedMoveClicks() {
-                simulateClickSquare(getBoundsFromCoords(move.substring(0, 2)));
-                await promiseTimeout(getMoveTime());
-                simulateClickSquare(getBoundsFromCoords(move.substring(2)));
-            }
-
-            async function performSimulatedMoveSequence() {
-                await promiseTimeout(getThinkTime());
-                await performSimulatedMoveClicks();
-                if (move[4]) {
-                    await promiseTimeout(getMoveTime());
-                    await simulatePromotionClicks(move[4]); // conditional promotion click
-                }
-            }
-
-            return performSimulatedMoveSequence();
-        }
-
-        function simulatePvMoves(pv) {
-            const boardBounds = getBoard().getBoundingClientRect();
-
-            function deriveLastMove() {
-                function deriveCoords(square) {
-                    if (!square) return 'no';
-                    const squareBounds = square.getBoundingClientRect();
-                    const xIdx = Math.floor(((squareBounds.x + 1) - boardBounds.x) / squareBounds.width);
-                    const yIdx = Math.floor(((squareBounds.y + 1) - boardBounds.y) / squareBounds.height);
-                    return getOrientation() === 'white'
-                        ? String.fromCharCode('a'.charCodeAt(0) + xIdx) + (8 - yIdx)
-                        : String.fromCharCode('h'.charCodeAt(0) - xIdx) + (yIdx + 1);
-                }
-
-                const [fromSquare, toSquare] = getLastMoveHighlights();
-                return deriveCoords(fromSquare) + deriveCoords(toSquare);
-            }
-
-            async function confirmResponse(move, lastMove) {
-                let runtime = 0;
-                while (runtime < 10000) { // < 10 seconds
-                    runtime += await promiseTimeout(config.fen_refresh);
-                    try {
-                        const observedLastMove = deriveLastMove();
-                        if (observedLastMove !== lastMove) {
-                            return observedLastMove === move;
-                        }
-                    } catch (error) {
-                        // retry on failure
-                    }
-                }
-                return false;
-            }
-
-            async function performSimulatedPvMoveSequence() {
-                for (let i = 0; i < pv.length; i++) {
-                    let lastMove = pv[i - 1];
-                    let move = pv[i];
-                    if (i % 2 === 0) { // even index -> my move
-                        await simulateMove(move, false);
-                    } else { // odd index -> their move
-                        if (!await confirmResponse(move, lastMove)) return;
-                    }
-                }
-            }
-
-            return performSimulatedPvMoveSequence();
-        }
-
-        async function simulatePromotionClicks(promotion) {
-            const promotionChoice = getPromotionSelection(promotion);
-            if (promotionChoice) {
-                await simulateClickSquare(promotionChoice.getBoundingClientRect())
-            }
-        }
     })();
 }

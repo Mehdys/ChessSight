@@ -34,9 +34,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         computer_evaluation: JSON.parse(localStorage.getItem('computer_evaluation')) || false,
         threat_analysis: JSON.parse(localStorage.getItem('threat_analysis')) || false,
         simon_says_mode: JSON.parse(localStorage.getItem('simon_says_mode')) || false,
-        autoplay: JSON.parse(localStorage.getItem('autoplay')) || false,
+
         puzzle_mode: JSON.parse(localStorage.getItem('puzzle_mode')) || false,
-        python_autoplay_backend: JSON.parse(localStorage.getItem('python_autoplay_backend')) || false,
+
         // appearance settings
         pieces: JSON.parse(localStorage.getItem('pieces')) || 'wikipedia.svg',
         board: JSON.parse(localStorage.getItem('board')) || 'brown',
@@ -81,9 +81,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         } else if (response.pullConfig) {
             push_config();
-        } else if (response.click) {
-            console.log(response);
-            dispatch_click_event(response.x, response.y);
         }
     });
 
@@ -336,9 +333,7 @@ function on_engine_best_move(best, threat, isTerminal = false) {
                 draw_threat();
             }
         }
-        if (config.autoplay && isTerminal) {
-            request_automove(best);
-        }
+
     }
 
     if (!config.simon_says_mode) {
@@ -566,14 +561,7 @@ function request_fen() {
     });
 }
 
-function request_automove(move) {
-    const message = (config.puzzle_mode)
-        ? { automove: true, pv: last_eval.lines[0].pv.split(' ') || [move] }
-        : { automove: true, move: move };
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, message);
-    });
-}
+
 
 function request_console_log(message) {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -752,41 +740,7 @@ function toggle_calculating(on) {
     }
 }
 
-async function dispatch_click_event(x, y) {
-    if (config.python_autoplay_backend) {
-        await request_backend_click(x, y);
-    } else {
-        await request_debugger_click(x, y);
-    }
-}
 
-async function request_debugger_click(x, y) {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const debugee = { tabId: tabs[0].id };
-        chrome.debugger.attach(debugee, '1.3', async () => {
-            await dispatch_mouse_event(debugee, 'Input.dispatchMouseEvent', {
-                type: 'mousePressed',
-                button: 'left',
-                clickCount: 1,
-                x: x,
-                y: y,
-            });
-            await dispatch_mouse_event(debugee, 'Input.dispatchMouseEvent', {
-                type: 'mouseReleased',
-                button: 'left',
-                clickCount: 1,
-                x: x,
-                y: y,
-            });
-        });
-    });
-}
-
-async function dispatch_mouse_event(debugee, mouseEvent, mouseEventOpts) {
-    return new Promise(resolve => {
-        chrome.debugger.sendCommand(debugee, mouseEvent, mouseEventOpts, resolve);
-    });
-}
 
 // -------------------------------------------------------------------------------------------
 // LLM Chat Logic
@@ -921,13 +875,7 @@ function updateMessage(id, html) {
 // Actually, I should proactively attach them in the DOMContentLoaded block.
 
 
-async function request_backend_click(x, y) {
-    return call_backend(`http://localhost:8080/performClick`, { x: x, y: y });
-}
 
-async function request_backend_move(x0, y0, x1, y1) {
-    return call_backend('http://localhost:8080/performMove', { x0: x0, y0: y0, x1: x1, y1: y1 });
-}
 
 async function request_remote_configure(options) {
     // Configuration not needed for new API - Stockfish is pre-configured
